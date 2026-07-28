@@ -454,7 +454,7 @@ with col5:
         """,
         unsafe_allow_html=True
     )
-    <br>
+    
 with col6:
     st.markdown(
         f"""
