@@ -278,7 +278,7 @@ with tab2:
 
 st.subheader("🏥 CBP vs HHS Care Load")
 
-    st.line_chart(
+st.line_chart(
         filtered.set_index("Date")[
             [
                 "Children in CBP custody",
