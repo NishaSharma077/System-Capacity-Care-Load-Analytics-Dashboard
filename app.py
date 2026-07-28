@@ -244,30 +244,31 @@ st.markdown("""
 <style>
 
 .stTabs [data-baseweb="tab-list"] {
-    gap: 10px;
-    padding: 10px 0px;
+    gap: 8px !important;
+    background-color: #f0f2f6 !important;
+    padding: 8px !important;
+    border-radius: 10px !important;
 }
 
 .stTabs [data-baseweb="tab"] {
-    height: 50px;
-    padding: 10px 20px;
-    border-radius: 10px 10px 0px 0px;
-    font-size: 16px;
-    font-weight: 600;
+    background-color: white !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
 }
 
 .stTabs [data-baseweb="tab"]:hover {
-    background-color: #f0f2f6;
+    background-color: #e3f2fd !important;
 }
 
 .stTabs [aria-selected="true"] {
-    font-weight: bold;
+    background-color: #2196f3 !important;
+    color: white !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
-
 #Tabs
 
 tab1, tab2, tab3, tab4 = st.tabs([
