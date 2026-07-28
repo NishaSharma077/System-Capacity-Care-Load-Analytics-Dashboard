@@ -581,21 +581,21 @@ with tab3:
         ]
     )
  fig, ax = plt.subplots(figsize=(12,6))
- ax.plot(
+  ax.plot(
     filtered["Date"],
     filtered["Net intake Pressure"],
     color="orange"
  )
- ax.axhline(
+  ax.axhline(
     y=0,
     linestyle="--"
  )
- ax.set_xlabel("Date")
- ax.set_ylabel("Net Intake Pressure")
- ax.grid(True)
- ax.tick_params(axis="x", rotation=45)
+  ax.set_xlabel("Date")
+  ax.set_ylabel("Net Intake Pressure")
+  ax.grid(True)
+  ax.tick_params(axis="x", rotation=45)
 
- st.pyplot(fig)
+  st.pyplot(fig)
 
 #Monthly Average Load
 
