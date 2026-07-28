@@ -60,7 +60,7 @@ st.markdown("""
         border-radius: 8px;
         font-weight: bold;
         padding: 10px;
-  
+
 /* Tab container */
 .stTabs [data-baseweb="tab-list"] {
     gap: 20px !important;
@@ -469,7 +469,7 @@ with col7:
         f"{filtered['Cumulative System Load'].iloc[-1]:,.0f}"
     )
 with col8:
-    
+
  st.metric(
     "Backlog Pressure Days",
     int(backlog_days)
@@ -496,7 +496,7 @@ tab1, tab2, tab3, tab4 = st.tabs([
 #Chart of Total System Load
 
 with tab1:
-    
+
  st.subheader("📊 System Overview")
 
  st.write(
@@ -719,7 +719,6 @@ with tab4:
     )
 st.subheader("Dataset")
 st.dataframe(filtered)
-
 
 
 
