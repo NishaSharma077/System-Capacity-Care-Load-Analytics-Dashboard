@@ -628,13 +628,13 @@ ax.plot(
     label="14 Day Rolling Average",
  )
 
- ax.set_xlabel("Date")
- ax.set_ylabel("Children Under Care")
- ax.legend()
- ax.grid(True)
- ax.tick_params(axis="x", rotation=45)
+ax.set_xlabel("Date")
+ax.set_ylabel("Children Under Care")
+ax.legend()
+ax.grid(True)
+ax.tick_params(axis="x", rotation=45)
 
- st.pyplot(fig)
+st.pyplot(fig)
 # Cumulative System Load
 
  st.subheader("📊 Cumulative System Load")
