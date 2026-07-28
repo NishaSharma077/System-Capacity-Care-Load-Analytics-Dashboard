@@ -410,7 +410,7 @@ st.download_button(
 
 with tab4:
 
-st.subheader("ℹ️ Key Insights")
+   st.subheader("ℹ️ Key Insights")
 
 peak_load = filtered["Total System Load"].max()
 
