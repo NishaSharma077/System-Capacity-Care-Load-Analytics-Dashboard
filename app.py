@@ -250,7 +250,7 @@ tab1, tab2, tab3, tab4 = st.tabs([
 #Chart of Total System Load
 st.subheader("📊 System Overview")
 
-    st.write(
+st.write(
         "This section provides an overview of the total system "
         "care load."
     )
