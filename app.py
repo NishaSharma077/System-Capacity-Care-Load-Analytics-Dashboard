@@ -14,18 +14,54 @@ st.title("🏥 System Capacity & Care Load Analytics Dashboard")
 #load dataset
 df = pd.read_csv("HHS_Unaccompanied_Alien_Children_Program.csv")
 #Convert Date
-df["date"] = pd.to_datetime(df["Date"])
+# Remove extra spaces from column names
+df.columns = df.columns.str.strip()
+
+
+# ============================================================
+# CONVERT DATE
+# ============================================================
+
+df["Date"] = pd.to_datetime(
+    df["Date"],
+    errors="coerce"
+)
+
+
+# ============================================================
+# CONVERT NUMERIC COLUMNS
+# ============================================================
+
+numeric_columns = [
+    "Children apprehended and placed in CBP custody*",
+    "Children in CBP custody",
+    "Children transferred out of CBP custody",
+    "Children in HHS Care",
+    "Children discharged from HHS Care"
+]
+
+for col in numeric_columns:
+    df[col] = (
+        df[col]
+        .astype(str)
+        .str.replace(",", "", regex=False)
+        .str.strip()
+    )
+    df[col] = pd.to_numeric(
+        df[col],
+        errors="coerce"
+    )
 
 #Create Metrics
 
 
 df["Total System Load"] = (
-    df["Children in CBP custody"] +
-    df["Children in HHS Care"]
+    df["Children in CBP custody"].fiillna(0) +
+    df["Children in HHS Care"].fillna(0)
 )
 df["Net intake Pressure"] = (
-    df["Children transferred out of CBP custody"] -
-    df["Children discharged from HHS Care"]
+    df["Children transferred out of CBP custody"].fillna(0) -
+    df["Children discharged from HHS Care"].fillna(0)
 )
 df["7 Day Rolling Average"] = (df["Total System Load"].rolling(window=7).mean())
 df["14 Day Rolling Average"] = (df["Total System Load"].rolling(window=14).mean())
