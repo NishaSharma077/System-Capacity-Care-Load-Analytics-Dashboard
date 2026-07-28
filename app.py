@@ -254,6 +254,9 @@ st.write(
         "This section provides an overview of the total system "
         "care load."
     )
+st.line_chart(
+        filtered.set_index("Date")["Total System Load"]
+    )
 
 
 fig, ax = plt.subplots(figsize=(12,6))
@@ -273,7 +276,16 @@ st.pyplot(fig)
 
 with tab2:
 
-    st.subheader("🏥 CBP vs HHS Care Load")
+st.subheader("🏥 CBP vs HHS Care Load")
+
+    st.line_chart(
+        filtered.set_index("Date")[
+            [
+                "Children in CBP custody",
+                "Children in HHS Care"
+            ]
+        ]
+    )
 fig, ax = plt.subplots(figsize=(12,6))
 ax.plot(
     filtered["Date"],
@@ -300,7 +312,25 @@ ax.tick_params(axis="x", rotation=45)
 
 with tab3:
 
-    st.subheader("📈 Care Load Trends")
+st.subheader("📈 Care Load Trends")
+
+    st.line_chart(
+        filtered.set_index("Date")[
+            [
+                "Total System Load",
+                "7 Day Rolling Average",
+                "14 Day Rolling Average"
+            ]
+        ]
+    )
+
+    st.subheader("Net Intake Pressure")
+
+    st.line_chart(
+        filtered.set_index("Date")[
+            "Net intake Pressure"
+        ]
+    )
 fig, ax = plt.subplots(figsize=(12,6))
 ax.plot(
     filtered["Date"],
@@ -380,7 +410,7 @@ st.download_button(
 
 with tab4:
 
-    st.subheader("ℹ️ Key Insights")
+   st.subheader("ℹ️ Key Insights")
 
     peak_load = filtered["Total System Load"].max()
 
