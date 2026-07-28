@@ -240,9 +240,22 @@ with col5:
         unsafe_allow_html=True
     )
 
-#Chart of Total System Load
+tab1, tab2, tab3, tab4 = st.tabs([
+    "📊 Overview",
+    "🏥 Care Load",
+    "📈 Trends",
+    "ℹ️ Insights"
+])
 
-st.subheader("Total System Load Over Time")
+#Chart of Total System Load
+st.subheader("📊 System Overview")
+
+    st.write(
+        "This section provides an overview of the total system "
+        "care load."
+    )
+
+
 fig, ax = plt.subplots(figsize=(12,6))
 ax.plot(
     filtered["Date"],
@@ -258,7 +271,9 @@ st.pyplot(fig)
 
 #CBP vs HHS
 
-st.subheader("CBP vs. HHS Care Load Over Time")
+with tab2:
+
+    st.subheader("🏥 CBP vs HHS Care Load")
 fig, ax = plt.subplots(figsize=(12,6))
 ax.plot(
     filtered["Date"],
@@ -282,7 +297,10 @@ ax.tick_params(axis="x", rotation=45)
 
 #Net Intake
 
-st.subheader("Net Intake Pressure Over Time")
+
+with tab3:
+
+    st.subheader("📈 Care Load Trends")
 fig, ax = plt.subplots(figsize=(12,6))
 ax.plot(
     filtered["Date"],
@@ -359,6 +377,14 @@ st.download_button(
 )
 
 #insights and recommendation
+
+with tab4:
+
+    st.subheader("ℹ️ Key Insights")
+
+    peak_load = filtered["Total System Load"].max()
+
+    average_load = filtered["Total System Load"].mean()
 
 with st.expander("🔎 View Key Findings"):
 
