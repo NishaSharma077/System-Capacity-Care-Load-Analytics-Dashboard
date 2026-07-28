@@ -240,6 +240,10 @@ with col5:
         unsafe_allow_html=True
     )
 
+
+
+#Tabs
+
 tab1, tab2, tab3, tab4 = st.tabs([
     "📊 Overview",
     "🏥 Care Load",
@@ -408,9 +412,8 @@ st.download_button(
 
 #insights and recommendation
 
-with tab4:
 
-   st.subheader("ℹ️ Key Insights")
+st.subheader("ℹ️ Key Insights")
 
 peak_load = filtered["Total System Load"].max()
 
