@@ -387,8 +387,8 @@ metric_columns = {
 selected_metric = metric_columns[metric_option]
 
 #KPI Card
-
-col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
+#Row 1
+col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     st.markdown(
@@ -454,7 +454,10 @@ with col5:
         """,
         unsafe_allow_html=True
     )
-    
+st.markdown("<br>", unsafe_allow_html=True)
+
+# Second Row
+col6, col7, col8, col9, col10 = st.columns(5)  
 with col6:
     st.markdown(
         f"""
