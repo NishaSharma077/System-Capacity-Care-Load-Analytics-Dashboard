@@ -56,7 +56,7 @@ for col in numeric_columns:
 
 
 df["Total System Load"] = (
-    df["Children in CBP custody"].fiillna(0) +
+    df["Children in CBP custody"].fillna(0) +
     df["Children in HHS Care"].fillna(0)
 )
 df["Net intake Pressure"] = (
