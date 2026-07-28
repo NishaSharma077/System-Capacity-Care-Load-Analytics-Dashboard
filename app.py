@@ -244,18 +244,18 @@ st.markdown("""
 <style>
 
 .stTabs [data-baseweb="tab-list"] {
-    gap: 8px !important;
+    gap: 20px !important;
     background-color: #f0f2f6 !important;
-    padding: 8px !important;
-    border-radius: 10px !important;
+    padding: 10px !important;
+    border-radius: 20px !important;
 }
 
 .stTabs [data-baseweb="tab"] {
     background-color: white !important;
-    border-radius: 8px !important;
+    border-radius: 10px !important;
     padding: 10px 20px !important;
-    font-weight: 600 !important;
-    font-size: 16px !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
 }
 
 .stTabs [data-baseweb="tab"]:hover {
