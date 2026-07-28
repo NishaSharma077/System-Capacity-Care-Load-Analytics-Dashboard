@@ -637,9 +637,9 @@ ax.tick_params(axis="x", rotation=45)
 st.pyplot(fig)
 # Cumulative System Load
 
- st.subheader("📊 Cumulative System Load")
+st.subheader("📊 Cumulative System Load")
 
- st.line_chart(
+st.line_chart(
     filtered.set_index("Date")[
         "Cumulative System Load"
     ]
@@ -647,9 +647,9 @@ st.pyplot(fig)
 
  # Backlog Indicator
 
- st.subheader("📦 Backlog Pressure")
+st.subheader("📦 Backlog Pressure")
 
- st.bar_chart(
+st.bar_chart(
     filtered.set_index("Date")[
         "Net intake Pressure"
     ]
