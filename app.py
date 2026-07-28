@@ -511,7 +511,47 @@ st.markdown("""
         border-radius: 8px;
         font-weight: bold;
         padding: 10px;
-    }
+  
+    # ============================================================
+# CUSTOM TAB STYLING
+# ============================================================
+
+st.markdown("""
+<style>
+
+/* Tab container */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+    padding: 10px 0px;
+}
+
+/* Individual tabs */
+.stTabs [data-baseweb="tab"] {
+    height: 50px;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Hover effect */
+.stTabs [data-baseweb="tab"]:hover {
+    background-color: #f0f2f6;
+}
+
+/* Active tab */
+.stTabs [aria-selected="true"] {
+    font-weight: bold;
+}
+
+/* Tab underline */
+.stTabs [data-baseweb="tab-highlight"] {
+    height: 4px;
+    border-radius: 4px;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
     /* Download button */
     .stDownloadButton > button {
