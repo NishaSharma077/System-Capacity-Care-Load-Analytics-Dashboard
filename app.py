@@ -455,6 +455,17 @@ with col5:
         unsafe_allow_html=True
     )
 with col6:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">Care Load Volatility</div>
+            <div class="kpi-value">
+                {filtered["volatility_index:.2f}%"}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     st.metric(
         "Care Load Volatility",
         f"{volatility_index:.2f}%"
