@@ -312,7 +312,7 @@ ax.tick_params(axis="x", rotation=45)
 
 with tab3:
 
-st.subheader("📈 Care Load Trends")
+    st.subheader("📈 Care Load Trends")
 
     st.line_chart(
         filtered.set_index("Date")[
