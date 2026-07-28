@@ -252,13 +252,16 @@ tab1, tab2, tab3, tab4 = st.tabs([
 ])
 
 #Chart of Total System Load
-st.subheader("📊 System Overview")
 
-st.write(
+with tab1:
+    
+ st.subheader("📊 System Overview")
+
+ st.write(
         "This section provides an overview of the total system "
         "care load."
     )
-st.line_chart(
+ st.line_chart(
         filtered.set_index("Date")["Total System Load"]
     )
 
@@ -412,14 +415,15 @@ st.download_button(
 
 #insights and recommendation
 
+with tab4:
 
-st.subheader("ℹ️ Key Insights")
+ st.subheader("ℹ️ Key Insights")
 
-peak_load = filtered["Total System Load"].max()
+ peak_load = filtered["Total System Load"].max()
 
-average_load = filtered["Total System Load"].mean()
+ average_load = filtered["Total System Load"].mean()
 
-with st.expander("🔎 View Key Findings"):
+ with st.expander("🔎 View Key Findings"):
 
     st.write(
         f"The peak total system load was "
@@ -437,7 +441,7 @@ with st.expander("🔎 View Key Findings"):
     )
 
 
-with st.expander("💡 View Recommendations"):
+ with st.expander("💡 View Recommendations"):
 
     st.write(
         "• Monitor net intake pressure regularly."
