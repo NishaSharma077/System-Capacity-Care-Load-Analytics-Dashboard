@@ -560,7 +560,7 @@ with tab3:
 
  st.subheader("📈 Care Load Trends")
 
-  st.line_chart(
+ st.line_chart(
         filtered.set_index("Date")[
             [
                 "Total System Load",
@@ -572,7 +572,7 @@ with tab3:
 
  st.subheader("Net intake Pressure")
 
-    st.line_chart(
+ st.line_chart(
         filtered.set_index("Date")[
             "Net intake Pressure"
         ]
