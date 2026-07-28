@@ -9,7 +9,18 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("🏥 System Capacity & Care Load Analytics Dashboard")
+st.markdown(
+    '<div class="main-title">🏥 System Capacity & Care Load Analytics Dashboard</div>',
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    '<div class="subtitle">'
+    'Monitoring care load, intake pressure, and system capacity '
+    'for Unaccompanied Children'
+    '</div>',
+    unsafe_allow_html=True
+)
 
 #load dataset
 df = pd.read_csv("HHS_Unaccompanied_Alien_Children_Program.csv")
@@ -162,33 +173,72 @@ selected_metric = metric_columns[metric_option]
 
 #KPI Card
 
-col1,col2,col3,col4,col5 = st.columns(5)
+col1, col2, col3, col4, col5 = st.columns(5)
 
-col1.metric(
-    "Total System Load",
-    int(filtered["Total System Load"].sum())
-)
+with col1:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">Total System Load</div>
+            <div class="kpi-value">
+                {filtered["Total System Load"].sum():,.0f}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-col2.metric(
-    "Average system Load",
-    int(filtered["Total System Load"].mean())
-)
+with col2:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">Average Daily Load</div>
+            <div class="kpi-value">
+                {filtered["Total System Load"].mean():,.0f}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-col3.metric(
-    "Peak Load",
-    int(filtered["Total System Load"].max())
+with col3:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">Peak System Load</div>
+            <div class="kpi-value">
+                {filtered["Total System Load"].max():,.0f}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-)
+with col4:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">Average Net Intake</div>
+            <div class="kpi-value">
+                {filtered["Net intake Pressure"].mean():,.0f}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-col4.metric(
-    "Average Net Intake",
-    round(filtered["Net intake Pressure"].mean(), 2)
-)
-
-col5.metric(
-    "Highest HHS Care",
-    int(filtered["Children in HHS Care"].max())
-)
+with col5:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">Highest HHS Care</div>
+            <div class="kpi-value">
+                {filtered["Children in HHS Care"].max():,.0f}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 #Chart of Total System Load
 
@@ -293,7 +343,6 @@ ax.tick_params(axis="x", rotation=45)
 st.pyplot(fig)
 
 #download filtered data
-
 st.subheader(
     "📥 Download Filtered Data"
 )
@@ -311,75 +360,40 @@ st.download_button(
 
 #insights and recommendation
 
-st.subheader(
-    "ℹ️ Key Insights & Recommendations"
-)
+with st.expander("🔎 View Key Findings"):
 
-# Calculate insights
-peak_date = filtered.loc[
-    filtered["Total System Load"].idxmax(),
-    "Date"
-]
-
-peak_load = filtered["Total System Load"].max()
-
-avg_load = filtered["Total System Load"].mean()
-
-positive_intake_days = (
-    filtered["Net intake Pressure"] > 0
-).sum()
-
-total_valid_days = (
-    filtered["Net intake Pressure"].notna()
-    ).sum()
-
-if total_valid_days > 0:
-
-    positive_percentage = (
-        positive_intake_days /
-        total_valid_days
-    ) * 100
-
-else:
-
-    positive_percentage = 0
-
-# Insights
-st.markdown(
-    f"""
-### 🔎 Key Findings
-
-- The **peak total system load** during the selected period was
+    st.write(
+        f"The **peak total system load** during the selected period was
   **{peak_load:,.0f} children**, recorded on
-  **{peak_date.strftime('%B %d, %Y')}**.
+  **{peak_date.strftime('%B %d, %Y')}**."
+    )
 
-- The **average daily system load** was approximately
-  **{avg_load:,.0f} children**.
+    st.write(
+        f"The average daily system load was "
+        f"{filtered['Total System Load'].mean():,.0f} children."
+    )
 
-- The system experienced **positive net intake pressure on
-  {positive_percentage:.1f}% of valid reporting days**, indicating
-  periods when transfers into HHS exceeded discharges.
-
-### 💡 Recommendations
-
-- Monitor **net intake pressure** regularly to identify potential
-  increases in care demand.
-
-- Use **7-day and 14-day rolling averages** to distinguish sustained
-  changes in system load from short-term fluctuations.
-
-- Use historical high-load periods to support **staffing and shelter
-  planning**.
-
-- Track CBP and HHS loads separately to understand where pressure
-  is concentrated within the care pipeline.
-
-- Continue monitoring the system over time to support
-  **data-driven operational planning and humanitarian response**.
-"""
-)
+    st.write(
+        "Positive net intake pressure indicates periods where "
+        "transfers into HHS exceeded discharges."
+    )
 
 
+with st.expander("💡 View Recommendations"):
+
+    st.write(
+        "• Monitor net intake pressure regularly."
+    )
+
+    st.write(
+        "• Use rolling averages to identify sustained increases "
+        "in care demand."
+    )
+
+    st.write(
+        "• Use historical peak-load periods for staffing and "
+        "shelter planning."
+    )
 st.subheader("Dataset")
 st.dataframe(filtered)
 
