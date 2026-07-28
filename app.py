@@ -239,7 +239,33 @@ with col5:
         """,
         unsafe_allow_html=True
     )
+# CSS styling
+st.markdown("""
+<style>
 
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+    padding: 10px 0px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 50px;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    background-color: #f0f2f6;
+}
+
+.stTabs [aria-selected="true"] {
+    font-weight: bold;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 
 #Tabs
