@@ -363,9 +363,8 @@ st.download_button(
 with st.expander("🔎 View Key Findings"):
 
     st.write(
-        f"The **peak total system load** during the selected period was
-  **{peak_load:,.0f} children**, recorded on
-  **{peak_date.strftime('%B %d, %Y')}**."
+        f"The peak total system load was "
+        f"{filtered['Total System Load'].max():,.0f} children."
     )
 
     st.write(
