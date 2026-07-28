@@ -112,7 +112,7 @@ st.markdown(
 
 #load dataset
 df = pd.read_csv("HHS_Unaccompanied_Alien_Children_Program.csv")
-#Convert Date
+
 # Remove extra spaces from column names
 df.columns = df.columns.str.strip()
 
@@ -191,10 +191,7 @@ df = df.sort_values("Date").reset_index(drop=True)
 df["Cumulative System Load"] = (
     df["Total System Load"].cumsum()
 )
-#backlog indicator
-df["Backlog Indicator"] = (
-    df["Net intake Pressure"] > 0
-)
+
 
 df["7 Day Rolling Average"] = (df["Total System Load"].rolling(window=7).mean())
 df["14 Day Rolling Average"] = (df["Total System Load"].rolling(window=14).mean())
@@ -508,16 +505,16 @@ with tab1:
     )
 
 
-fig, ax = plt.subplots(figsize=(12,6))
-ax.plot(
+ fig, ax = plt.subplots(figsize=(12,6))
+ ax.plot(
     filtered["Date"],
     filtered["Total System Load"],
     color="blue"
-)
-ax.set_xlabel("Date")
-ax.set_ylabel("Total System Load")
-ax.grid(True)
-ax.tick_params(axis="x", rotation=45)
+ )
+ ax.set_xlabel("Date")
+ ax.set_ylabel("Total System Load")
+ ax.grid(True)
+ ax.tick_params(axis="x", rotation=45)
 
 st.pyplot(fig)
 
@@ -561,9 +558,9 @@ with tab2:
 
 with tab3:
 
-    st.subheader("📈 Care Load Trends")
+ st.subheader("📈 Care Load Trends")
 
-    st.line_chart(
+  st.line_chart(
         filtered.set_index("Date")[
             [
                 "Total System Load",
@@ -573,29 +570,29 @@ with tab3:
         ]
     )
 
-    st.subheader("Net Intake Pressure")
+ st.subheader("Net intake Pressure")
 
     st.line_chart(
         filtered.set_index("Date")[
             "Net intake Pressure"
         ]
     )
-  fig, ax = plt.subplots(figsize=(12,6))
-  ax.plot(
+ fig, ax = plt.subplots(figsize=(12,6))
+ ax.plot(
     filtered["Date"],
     filtered["Net intake Pressure"],
     color="orange"
  )
-  ax.axhline(
+ ax.axhline(
     y=0,
     linestyle="--"
  )
-  ax.set_xlabel("Date")
-  ax.set_ylabel("Net Intake Pressure")
-  ax.grid(True)
-  ax.tick_params(axis="x", rotation=45)
+ ax.set_xlabel("Date")
+ ax.set_ylabel("Net Intake Pressure")
+ ax.grid(True)
+ ax.tick_params(axis="x", rotation=45)
 
-  st.pyplot(fig)
+ st.pyplot(fig)
 
 #Monthly Average Load
 
