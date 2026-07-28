@@ -454,44 +454,71 @@ with col5:
         """,
         unsafe_allow_html=True
     )
+    <br>
 with col6:
     st.markdown(
         f"""
         <div class="kpi-card">
             <div class="kpi-title">Care Load Volatility</div>
             <div class="kpi-value">
-                {filtered["volatility_index:.2f}%"}
+                {volatility_index:.2f}%
             </div>
         </div>
         """,
         unsafe_allow_html=True
     )
-    st.metric(
-        "Care Load Volatility",
-        f"{volatility_index:.2f}%"
-    )
 
 with col7:
-    st.metric(
-        "Cumulative System Load",
-        f"{filtered['Cumulative System Load'].iloc[-1]:,.0f}"
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">Cumulative System Load</div>
+            <div class="kpi-value">
+                {filtered['Cumulative System Load'].iloc[-1]:,.0f}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
-with col8:
 
- st.metric(
-    "Backlog Pressure Days",
-    int(backlog_days)
- )
+with col8:
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">Backlog Pressure Days</div>
+            <div class="kpi-value">
+                {int(backlog_days)}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 with col9:
-    st.metric(
-    "Discharge Offset Ratio",
-    f"{discharge_offset_ratio:.2f}%"
-)
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">Discharge Offset Ratio</div>
+            <div class="kpi-value">
+                {discharge_offset_ratio:.2f}%
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 with col10:
-    st.metric(
-    "High-Pressure Days",
-    len(stress_periods)
-)
+    st.markdown(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-title">High-Pressure Days</div>
+            <div class="kpi-value">
+                {len(stress_periods)}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 #Tabs
 
 tab1, tab2, tab3, tab4 = st.tabs([
