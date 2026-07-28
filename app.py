@@ -410,11 +410,11 @@ st.download_button(
 
 with tab4:
 
-   st.subheader("ℹ️ Key Insights")
+st.subheader("ℹ️ Key Insights")
 
-    peak_load = filtered["Total System Load"].max()
+peak_load = filtered["Total System Load"].max()
 
-    average_load = filtered["Total System Load"].mean()
+average_load = filtered["Total System Load"].mean()
 
 with st.expander("🔎 View Key Findings"):
 
