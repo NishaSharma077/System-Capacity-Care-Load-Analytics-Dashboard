@@ -382,3 +382,82 @@ st.markdown(
 
 st.subheader("Dataset")
 st.dataframe(filtered)
+
+# ============================================================
+# CUSTOM DASHBOARD STYLING
+# ============================================================
+
+st.markdown("""
+<style>
+
+    /* Main title */
+    .main-title {
+        font-size: 38px;
+        font-weight: bold;
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* Subtitle */
+    .subtitle {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    /* KPI Cards */
+    .kpi-card {
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+        background-color: #f8f9fa;
+    }
+
+    .kpi-title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .kpi-value {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    /* Sidebar */
+    section[data-testid="stSidebar"] {
+        padding-top: 20px;
+    }
+
+    /* Buttons */
+    .stButton > button {
+        width: 100%;
+        border-radius: 8px;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    /* Download button */
+    .stDownloadButton > button {
+        width: 100%;
+        border-radius: 8px;
+        font-weight: bold;
+        padding: 12px;
+    }
+
+</style>
+""", unsafe_allow_html=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
