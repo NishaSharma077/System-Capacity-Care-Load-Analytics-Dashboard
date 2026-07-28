@@ -512,13 +512,6 @@ st.markdown("""
         font-weight: bold;
         padding: 10px;
   
-    # ============================================================
-# CUSTOM TAB STYLING
-# ============================================================
-
-st.markdown("""
-<style>
-
 /* Tab container */
 .stTabs [data-baseweb="tab-list"] {
     gap: 10px;
@@ -550,8 +543,6 @@ st.markdown("""
     border-radius: 4px;
 }
 
-</style>
-""", unsafe_allow_html=True)
 
     /* Download button */
     .stDownloadButton > button {
