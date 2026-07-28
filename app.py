@@ -580,7 +580,7 @@ with tab3:
             "Net intake Pressure"
         ]
     )
- fig, ax = plt.subplots(figsize=(12,6))
+  fig, ax = plt.subplots(figsize=(12,6))
   ax.plot(
     filtered["Date"],
     filtered["Net intake Pressure"],
