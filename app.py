@@ -246,14 +246,14 @@ st.markdown("""
 .stTabs [data-baseweb="tab-list"] {
     gap: 20px !important;
     background-color: #f0f2f6 !important;
-    padding: 10px !important;
+    padding: 30px !important;
     border-radius: 20px !important;
 }
 
 .stTabs [data-baseweb="tab"] {
     background-color: white !important;
-    border-radius: 10px !important;
-    padding: 10px 20px !important;
+    border-radius: 30px !important;
+    padding: 30px 0px !important;
     font-weight: 700 !important;
     font-size: 18px !important;
 }
