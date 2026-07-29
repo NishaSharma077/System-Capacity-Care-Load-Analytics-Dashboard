@@ -522,18 +522,11 @@ with col10:
         """,
         unsafe_allow_html=True
     )
-#Tabs
 
-tab1, tab2, tab3, tab4 = st.tabs([
-    "📊 Overview",
-    "🏥 Care Load",
-    "📈 Trends",
-    "ℹ️ Insights"
-])
 
 #Chart of Total System Load
 
-with tab1:
+
 
  st.subheader("📊 System Overview")
 
@@ -593,13 +586,17 @@ with tab2:
  ax.legend(["CBP Custody", "HHS Care"])
  ax.grid(True)
  ax.tick_params(axis="x", rotation=45)
-
+st.pyplot(fig)
 #Net Intake
 
 
-with tab3:
+
 
  st.subheader("📈 Care Load Trends")
+ st.write(
+        "This section provides an overview of the Care Load Trend. "
+        
+    )
 
  st.line_chart(
         filtered.set_index("Date")[
