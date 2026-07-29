@@ -42,9 +42,11 @@ st.markdown("""
     .kpi-title {
         font-size: 16px;
         font-weight: bold;
+        color: black;
     }
 
     .kpi-value {
+        font-color: Black;
         font-size: 28px;
         font-weight: bold;
     }
