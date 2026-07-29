@@ -46,7 +46,7 @@ st.markdown("""
     }
 
     .kpi-value {
-        font-color: Black;
+        color: Black;
         font-size: 28px;
         font-weight: bold;
     }
