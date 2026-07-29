@@ -541,11 +541,7 @@ with tab1:
         "This section provides an overview of the total system "
         "care load."
     )
- st.line_chart(
-        filtered.set_index("Date")["Total System Load"]
-    )
-
-
+ 
  fig, ax = plt.subplots(figsize=(12,6))
  ax.plot(
     filtered["Date"],
@@ -648,14 +644,14 @@ with tab3:
  filtered["Month"] = filtered["Date"].dt.to_period("M")
 
  Monthly = (filtered.groupby("Month")["Total System Load"].mean())
+ monthly_avg_load["Month"] = ( monthly_avg_load["Month"] .astype(str) )
+ monthly_avg_load = monthly_avg_load.sort_values("Month")
 
  st.subheader("Monthly Average System Load")
  st.write(
         "This section provides an overview of Monthly Average Load "
         
     )
-
- st.bar_chart(Monthly)
  st.bar_chart( monthly_avg_load.set_index("Month")["Total System Load"], 
   x_label="Month", 
   y_label="Average Number of Children" )
