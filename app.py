@@ -621,8 +621,6 @@ st.write(
     "helping to identify monthly trends, seasonal patterns, "
     "and periods of higher or lower care demand."
 )
-
-st.bar_chart(Monthly)
 fig, ax = plt.subplots(figsize=(12,6))
 ax.bar(Monthly.index.astype(str), Monthly)
 ax.set_xlabel("Month")
@@ -737,15 +735,15 @@ st.download_button(
 
 #insights and recommendation
 
-with tab4:
 
- st.subheader("ℹ️ Key Insights")
 
- peak_load = filtered["Total System Load"].max()
+st.subheader("ℹ️ Key Insights")
 
- average_load = filtered["Total System Load"].mean()
+peak_load = filtered["Total System Load"].max()
 
- with st.expander("🔎 View Key Findings"):
+average_load = filtered["Total System Load"].mean()
+
+with st.expander("🔎 View Key Findings"):
 
     st.write(
         f"The peak total system load was "
@@ -763,7 +761,7 @@ with tab4:
     )
 
 
- with st.expander("💡 View Recommendations"):
+with st.expander("💡 View Recommendations"):
 
     st.write(
         "• Monitor net intake pressure regularly."
