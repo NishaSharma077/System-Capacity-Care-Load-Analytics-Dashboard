@@ -526,147 +526,132 @@ with col10:
 
 #Chart of Total System Load
 
+#Chart of Total System Load
 
-
- st.subheader("📊 System Overview")
-
- st.write(
-        "This section provides an overview of the total system "
-        "care load."
-    )
- 
- fig, ax = plt.subplots(figsize=(12,6))
- ax.plot(
+st.subheader("Total System Load Over Time")
+st.write(
+    "This chart shows the total number of children under care over time, "
+    "calculated by combining children in CBP custody and children in HHS care. "
+    "It helps identify overall changes in system demand and periods of increasing "
+    "or decreasing care load."
+)
+fig, ax = plt.subplots(figsize=(12,6))
+ax.plot(
     filtered["Date"],
     filtered["Total System Load"],
     color="blue"
- )
- ax.set_xlabel("Date")
- ax.set_ylabel("Total System Load")
- ax.grid(True)
- ax.tick_params(axis="x", rotation=45)
+)
+ax.set_xlabel("Date")
+ax.set_ylabel("Total System Load")
+ax.grid(True)
+ax.tick_params(axis="x", rotation=45)
 
 st.pyplot(fig)
 
 #CBP vs HHS
 
-with tab2:
-
- st.subheader("🏥 CBP vs HHS Care Load")
- st.write(
-        "This section provides an overview of the CBP vs HHS Care Load. "
-        
-    )
-
- st.line_chart(
-        filtered.set_index("Date")[
-            [
-                "Children in CBP custody",
-                "Children in HHS Care"
-            ]
-        ]
-    )
- fig, ax = plt.subplots(figsize=(12,6))
- ax.plot(
+st.subheader("CBP vs. HHS Care Load Over Time")
+st.write(
+    "This chart compares the number of children in CBP custody "
+    "with the number of children in HHS care over time. "
+    "It helps identify changes in care load and differences between "
+    "the two stages of the UAC care system."
+)
+fig, ax = plt.subplots(figsize=(12,6))
+ax.plot(
     filtered["Date"],
     filtered["Children in CBP custody"],
     label = "CBP Custody",
     color = "red"
- )
+)
 
- ax.plot(
+ax.plot(
     filtered["Date"],
     filtered["Children in HHS Care"],
     label = "HHS Care",
     color="green"
- )
+)
 
- ax.set_xlabel("Date")
- ax.set_ylabel(" Care Load")
- ax.legend(["CBP Custody", "HHS Care"])
- ax.grid(True)
- ax.tick_params(axis="x", rotation=45)
+ax.set_xlabel("Date")
+ax.set_ylabel(" Care Load")
+ax.legend(["CBP Custody", "HHS Care"])
+ax.grid(True)
+ax.tick_params(axis="x", rotation=45)
+plt.tight_layout()
+
 st.pyplot(fig)
-#Net Intake
 
+#Net Intake Pressrue
 
-
-
- st.subheader("📈 Care Load Trends")
- st.write(
-        "This section provides an overview of the Care Load Trend. "
-        
-    )
-
- st.line_chart(
-        filtered.set_index("Date")[
-            [
-                "Total System Load",
-                "7 Day Rolling Average",
-                "14 Day Rolling Average"
-            ]
-        ]
-    )
-
- st.subheader("Net intake Pressure")
- st.write(
-        "This section provides an overview of difference between transfer from CBP Custody and discharge from HHS Care. "
-        
-    )
-
- st.line_chart(
-        filtered.set_index("Date")[
-            "Net intake Pressure"
-        ]
-    )
- fig, ax = plt.subplots(figsize=(12,6))
- ax.plot(
+st.subheader("Net Intake Pressure Over Time")
+st.write(
+    "This chart shows the change in net intake pressure over time, "
+    "calculated as the number of children transferred out of CBP "
+    "custody minus the number of children discharged from HHS care. "
+    "Positive values indicate that transfers exceeded discharges, "
+    "which may suggest increasing pressure on the care system, "
+    "while negative values indicate that discharges exceeded transfers."
+)
+fig, ax = plt.subplots(figsize=(12,6))
+ax.plot(
     filtered["Date"],
     filtered["Net intake Pressure"],
     color="orange"
- )
- ax.axhline(
+)
+ax.axhline(
     y=0,
     linestyle="--"
- )
- ax.set_xlabel("Date")
- ax.set_ylabel("Net Intake Pressure")
- ax.grid(True)
- ax.tick_params(axis="x", rotation=45)
+)
+ax.set_xlabel("Date")
+ax.set_ylabel("Net Intake Pressure")
+ax.grid(True)
+ax.tick_params(axis="x", rotation=45)
 
- st.pyplot(fig)
+st.pyplot(fig)
 
 #Monthly Average Load
 
- filtered["Month"] = filtered["Date"].dt.to_period("M")
+filtered["Month"] = filtered["Date"].dt.to_period("M")
 
- Monthly = (filtered.groupby("Month")["Total System Load"].mean())
- 
+Monthly = (filtered.groupby("Month")["Total System Load"].mean())
 
- st.subheader("Monthly Average System Load")
- st.write(
-        "This section provides an overview of Monthly Average Load "
-        
-    )
- st.bar_chart( Monthly)
+st.subheader("Monthly Average System Load")
+st.write(
+    "This chart shows the average system load for each month, "
+    "helping to identify monthly trends, seasonal patterns, "
+    "and periods of higher or lower care demand."
+)
+
+st.bar_chart(Monthly)
+fig, ax = plt.subplots(figsize=(12,6))
+ax.bar(Monthly.index.astype(str), Monthly)
+ax.set_xlabel("Month")
+ax.set_ylabel("Average System Load")
+ax.set_title("Monthly Average System Load")
+ax.tick_params(axis="x", rotation=45)
+
+st.pyplot(fig)
+
 
 #7 day vs 14 day rooling average
 
- st.subheader("7 Day vs. 14 Day Rolling Average")
- st.write(
-        "This section provides an overview of the 7 day vs 14 day rolling average "
-        
-    )
- fig, ax = plt.subplots(figsize=(12,6))
+st.subheader("7 Day vs. 14 Day Rolling Average")
+st.write(
+    "This chart compares the 7-day and 14-day rolling averages "
+    "of the system load to identify short-term and longer-term "
+    "trends, smooth daily fluctuations, and highlight periods "
+    "of increasing or decreasing care pressure."
+)
+fig, ax = plt.subplots(figsize=(12,6))
 
- ax.plot(
+ax.plot(
     filtered["Date"],
     filtered["Total System Load"],
     alpha=0.3,
     label="Daily System Load"
- )
+)
 
- ax.plot(
+ax.plot(
     filtered["Date"],
     filtered["7 Day Rolling Average"],
     label="7 Day Rolling Average",
@@ -676,7 +661,7 @@ ax.plot(
     filtered["Date"],
     filtered["14 Day Rolling Average"],
     label="14 Day Rolling Average",
- )
+)
 
 ax.set_xlabel("Date")
 ax.set_ylabel("Children Under Care")
@@ -685,21 +670,36 @@ ax.grid(True)
 ax.tick_params(axis="x", rotation=45)
 
 st.pyplot(fig)
-# Cumulative System Load
 
-st.subheader("📊 Cumulative System Load")
+
+
+# Calculate cumulative CBP custody load
+filtered["Cumulative CBP Load"] = (
+    filtered["Children in CBP custody"].cumsum()
+)
+
+
+st.subheader("📊 Cumulative CBP Custody Load")
+
 st.write(
-        "This section provides an overview of Cumulative System Load "
-        
-    )
+    "This chart shows the cumulative reported CBP "
+    "custody load across the selected reporting period."
+)
 
-st.line_chart(
-    filtered.set_index("Date")[
-        "Cumulative System Load"
-    ]
- )
+fig,ax = plt.subplots(figsize=(12,6))
+ax.plot(
+    filtered["Date"],
+    filtered["Cumulative CBP Load"]
+)
+ax.set_xlabel("Date")
+ax.set_ylabel("Cumulative CBP Load")
+ax.set_title("Cumulative CBP Custody Load")
+ax.grid(True)
+ax.tick_params(axis="x", rotation=45)
+    
 
- # Backlog Indicator
+st.pyplot(fig)
+#Backlog Indicator
 
 st.subheader("📦 Backlog Pressure")
 st.write(
@@ -707,12 +707,18 @@ st.write(
         
     )
 
-st.bar_chart(
-    filtered.set_index("Date")[
-        "Net intake Pressure"
-    ]
- )
+fig,ax = plt.subplots(figsize=(12,6))
+ax.bar(
+    filtered["Date"],
+    filtered["Net intake Pressure"]
+)
+ax.set_xlabel("Date")
+ax.set_ylabel("Net Intake Pressure")
+ax.set_title("Backlog Pressure")
+ax.grid(True)
+ax.tick_params(axis="x", rotation=45)
 
+st.pyplot(fig)
 #download filtered data
 st.subheader(
     "📥 Download Filtered Data"
