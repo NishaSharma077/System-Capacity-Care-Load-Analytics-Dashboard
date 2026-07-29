@@ -557,27 +557,22 @@ st.write(
     "It helps identify changes in care load and differences between "
     "the two stages of the UAC care system."
 )
-fig, ax = plt.subplots(figsize=(12,6))
-ax.plot(
-    filtered["Date"],
-    filtered["Children in CBP custody"],
-    label = "CBP Custody",
-    color = "red"
-)
+fig, ax1 = plt.subplots(figsize=(12,6))
+ax1.plot(df["Date"], df["Children in CBP custody"], label = "CBP Custody", color="blue")
+ax1.set_xlabel("Date")
+ax1.set_ylabel("CBP Custody Load", color="blue")
+ax1.tick_params("y", colors="blue")
 
-ax.plot(
-    filtered["Date"],
-    filtered["Children in HHS Care"],
-    label = "HHS Care",
-    color="green"
-)
+ #Plot HHS custody load
 
-ax.set_xlabel("Date")
-ax.set_ylabel(" Care Load")
-ax.legend(["CBP Custody", "HHS Care"])
-ax.grid(True)
-ax.tick_params(axis="x", rotation=45)
-plt.tight_layout()
+ax2 = ax1.twinx()
+ax2.plot(df["Date"], df["Children in HHS Care"], label = "HHS Care", color="green")
+ax2.set_ylabel("HHS Care Load", color="green")
+ax2.tick_params("y", colors="green")
+ax1.set_title("CBP vs. HHS Care Load Over Time")
+ax1.grid(True)
+ax1.legend()
+ax1.tick_params(axis="x", rotation=45)
 
 st.pyplot(fig)
 
