@@ -564,6 +564,10 @@ st.pyplot(fig)
 with tab2:
 
  st.subheader("🏥 CBP vs HHS Care Load")
+ st.write(
+        "This section provides an overview of the CBP vs HHS Care Load. "
+        
+    )
 
  st.line_chart(
         filtered.set_index("Date")[
@@ -612,6 +616,10 @@ with tab3:
     )
 
  st.subheader("Net intake Pressure")
+ st.write(
+        "This section provides an overview of difference between transfer from CBP Custody and discharge from HHS Care. "
+        
+    )
 
  st.line_chart(
         filtered.set_index("Date")[
@@ -642,12 +650,23 @@ with tab3:
  Monthly = (filtered.groupby("Month")["Total System Load"].mean())
 
  st.subheader("Monthly Average System Load")
+ st.write(
+        "This section provides an overview of Monthly Average Load "
+        
+    )
 
  st.bar_chart(Monthly)
+ st.bar_chart( monthly_avg_load.set_index("Month")["Total System Load"], 
+  x_label="Month", 
+  y_label="Average Number of Children" )
 
 #7 day vs 14 day rooling average
 
  st.subheader("7 Day vs. 14 Day Rolling Average")
+ st.write(
+        "This section provides an overview of the 7 day vs 14 day rolling average "
+        
+    )
  fig, ax = plt.subplots(figsize=(12,6))
 
  ax.plot(
@@ -679,6 +698,10 @@ st.pyplot(fig)
 # Cumulative System Load
 
 st.subheader("📊 Cumulative System Load")
+st.write(
+        "This section provides an overview of Cumulative System Load "
+        
+    )
 
 st.line_chart(
     filtered.set_index("Date")[
@@ -689,6 +712,10 @@ st.line_chart(
  # Backlog Indicator
 
 st.subheader("📦 Backlog Pressure")
+st.write(
+        "This section provides an overview of Backlog Pressure "
+        
+    )
 
 st.bar_chart(
     filtered.set_index("Date")[
